@@ -50,10 +50,50 @@ function showProblem2() {
 }
 
 
-$(document).ready(function () {
+function isPrime(num) {
+	var i = 2;
+	while (i < num){
+		if (num % i === 0) {
+			return false;
+		}
+		
+		i += 1;
+	}
+	
+	return true;
+}
+
+/* Recursively returns the largest prime number */
+function largestPrimeFactor(num) {
+	var i = 2,
+		primes = [];
+	
+	//if num is prime, return num
+	if (isPrime(num)) {
+		return num;
+	}
+	
+	//recursivly return next prime until at lowest point.
+	while (i < num) {
+		if (num % i === 0) {
+			return largestPrimeFactor(num / i);
+		}
+		i += 1;
+	}
+}
+
+function showProblem3() {
+	var result = Number(largestPrimeFactor(600851475143)).toLocaleString('en');
+    $('body').append('<p>The largest prime factor of 600,851,475,143 is ' + result + '</p>');
+}
+
+
+$(document).ready(function (){
     'use strict';
     showProblem1();
     showProblem2();
-    
-    
+    /* The prime factors of 13195 are 5, 7, 13, and 29.
+     * What is the largest prime factor of the number 600851475143?
+     */
+    showProblem3();
 });
