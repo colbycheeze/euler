@@ -14,15 +14,15 @@ end
 def find_multipliers(of_n)
   prime_array = []
   Prime.each(of_n) do |prime|
-    m = 1 
-    
+    power = 1 
+
     while prime**(m+1) <= of_n
-      m += 1
+      power += 1
     end
 
-    prime_array << prime**m
+    prime_array << prime**power
   end
 
   prime_array
 end
-  
+
